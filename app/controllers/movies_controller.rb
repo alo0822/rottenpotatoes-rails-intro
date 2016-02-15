@@ -16,7 +16,9 @@ class MoviesController < ApplicationController
     
     if params[:ratings]
     ratings_keys = params[:ratings].keys
-    @movies = Movie.join(:movie).where(:rating => ratings_arr)
+    # @movies = Movie.where(:rating => ratings_arr).to_a
+    # "user_id IN (?)", args
+    @movies = Movie.where("rating IN (?)", ratings_arr).to_a
     # @ratings.each_key { |key| 
     #   @movies = Movie.
     # }
