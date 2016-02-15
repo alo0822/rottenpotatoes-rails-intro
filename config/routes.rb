@@ -55,4 +55,5 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
+  get '/sorted_by_date', to: 'movies#index'
 end
