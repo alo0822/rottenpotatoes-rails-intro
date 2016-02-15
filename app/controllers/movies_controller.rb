@@ -15,8 +15,8 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.uniq.pluck(:rating)
     
     if params[:ratings]
-    ratings_arr = params[:ratings].keys
-    @movies = Movie.where(:rating => ratings_arr)
+    ratings_keys = params[:ratings].keys
+    @movies = Movie.join(:movie).where(:rating => ratings_arr)
     # @ratings.each_key { |key| 
     #   @movies = Movie.
     # }
