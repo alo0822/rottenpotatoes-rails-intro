@@ -15,14 +15,14 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.uniq.pluck(:rating)
     
     if params[:ratings]
-    @ratings_keys = params[:ratings].keys
-    # @movies = Movie.where(:rating => ratings_arr).to_a
-    # "user_id IN (?)", args
-    @movies = Movie.where(:rating => ratings_keys)
-    # @movies = Movie.where("rating IN (?)", ratings_keys).to_a
-    # @ratings.each_key { |key| 
-    #   @movies = Movie.
-    # }
+      @ratings_keys = params[:ratings].keys
+      # @movies = Movie.where(:rating => ratings_arr).to_a
+      @movies = Movie.where(:rating => ratings_keys)
+      # @movies = Movie.where("rating IN (?)", ratings_keys).to_a
+      # @ratings.each_key { |key| 
+      #   @movies = Movie.
+      # }
+    end
     
     if params[:sorted]
       @movies = Movie.all.order(@sorted)
