@@ -4,7 +4,7 @@
 %table#movies
   %thead
     %tr
-      %th { <a href="/movies?sorted=title" id="title_header" class=("hilite" if @sorted == "title")>Movie Title</a>
+      %th <a href="/movies?sorted=title" id="title_header" class=("th.hilite" if @sorted == "title")>Movie Title</a>
       %th Rating
       %th <a href="/movies?sorted=date" id="release_date_header">Release Date</a>
       %th More Info
