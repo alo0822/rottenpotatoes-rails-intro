@@ -14,6 +14,13 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     @all_ratings = Movie.uniq.pluck(:rating)
     
+    if params[:ratings]
+    ratings_arr = params[:ratings].keys
+    @movies = Movie.where(:rating => ratings_arr)
+    # @ratings.each_key { |key| 
+    #   @movies = Movie.
+    # }
+    
     if params[:sorted] == 'title'
       @sorted = params[:sorted]
       @movies = Movie.all.order(:title)
@@ -21,7 +28,6 @@ class MoviesController < ApplicationController
       @sorted = params[:sorted]
       @movies = Movie.all.order(:release_date)
     end
-    
   end
 
   def new
