@@ -12,7 +12,6 @@ class MoviesController < ApplicationController
 
   def index
     redirect = false
-    # @movies = Movie.all
     @all_ratings = Movie.uniq.pluck(:rating)
     @ratings_keys = @all_ratings
     
