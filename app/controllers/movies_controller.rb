@@ -14,14 +14,14 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     @all_ratings = Movie.uniq.pluck(:rating)
     @ratings_keys = @all_ratings
-    @redirect = false
+    redirect = false
     
     if params[:ratings]
       @ratings_keys = params[:ratings].keys
       session[:ratings] = params[:ratings]
     elsif session[:ratings]
       @ratings_keys = session[:ratings].keys
-      @redirect = true
+      redirect = true
     end
     
     if params[:sorted]
@@ -29,11 +29,11 @@ class MoviesController < ApplicationController
       session[:sorted] = @sorted
     else
       @sorted = session[:sorted]
-      @redirect = true
+      redirect = true
     end
     @movies = Movie.where(:rating => @ratings_keys).order(@sorted)
     
-    if @redirect
+    if redirect
       flash.keep
       redirect_to(movie_path, :sorted => session[:sorted], :ratings_keys => session[:ratings].keys)
     end
