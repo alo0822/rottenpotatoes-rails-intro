@@ -11,6 +11,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    session.clear
     @movies = Movie.all
     @all_ratings = Movie.uniq.pluck(:rating)
     @ratings_keys = @all_ratings
