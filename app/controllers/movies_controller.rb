@@ -13,7 +13,7 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
     @all_ratings = Movie.uniq.pluck(:rating)
-    @ratings_keys = params[:ratings].keys || []
+    @ratings_keys = params[:ratings].keys
     if params[:ratings]
       @movies = Movie.where(:rating => @ratings_keys)
     end
