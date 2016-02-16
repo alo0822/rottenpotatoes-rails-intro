@@ -36,6 +36,7 @@ class MoviesController < ApplicationController
     if @redirect
       flash.keep
       redirect_to(movie_path, :sorted => session[:sorted], :ratings_keys => session[:ratings].keys)
+    end
   end
 
   def new
