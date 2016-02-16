@@ -35,7 +35,7 @@ class MoviesController < ApplicationController
     
     if redirect
       flash.keep
-      redirect_to movies_path(:sorted => session[:sorted], :ratings => session[:ratings])
+      redirect_to(movies_path({:sorted => session[:sorted], :ratings => session[:ratings]}))
     end
   end
 
