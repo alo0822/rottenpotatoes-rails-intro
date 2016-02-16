@@ -14,15 +14,22 @@ class MoviesController < ApplicationController
     @movies = Movie.all
     @all_ratings = Movie.uniq.pluck(:rating)
     @ratings_keys = @all_ratings
+    
     if params[:ratings]
       @ratings_keys = params[:ratings].keys
-      @movies = Movie.where(:rating => @ratings_keys)
+      session[:ratings] = params[:ratings]
+    elsif session[:ratings]
+      @ratings_keys = session[:ratings].keys
     end
     
     if params[:sorted]
       @sorted = params[:sorted]
-      @movies = @movies.order(@sorted)
+      session[:sorted] = @sorted
+    else
+      @sorted = session[:sorted]
     end
+    
+    @movies = Movie.where(:rating => @ratings_keys).order(@sorted)
   end
 
   def new
